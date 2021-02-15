@@ -1,0 +1,12 @@
+
+.vscode/settings.json
+Library/AnnotationManager
+Library/ArtifactDB
+Library/APIUpdater/project-dependencies.graph
+Library/ArtifactDB-lock
+Library/*
+Logs/*
+obj/*
+Temp/*
+*.sln
+*.csproj
