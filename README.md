@@ -38,7 +38,7 @@
 
 ##### TMR
 
-![IMR-Pipeline-1](C:\Users\Adimator\Desktop\IMR-Pipeline-1.jpg)
+![IMR-Pipeline-1](README/IMR-Pipeline-1.jpg)
 
 ​	移动端或者带电源的主机一般都是使用TBR渲染架构，为了减少带宽消耗，进而减少功耗，通过先缓存顶点数据，通过光栅化前做一次Early-z(进行一次顶点遮挡剔除)，减少实际在着色阶段运算量以及会系统内存读写数量，通过小片段的On-Chip来缓存数据，可以提高读写速度和减少能耗
 
@@ -46,9 +46,7 @@ TBDR是PowerVR(苹果所使用的GPU)提出申请专利的，实际是TBR的优�
 
 ##### TBDR/TBR
 
-![TBDR-Pipeline-1](C:\Users\Adimator\Desktop\TBDR-Pipeline-1.jpg)
-
-
+![TBDR-Pipeline-1](README/TBDR-Pipeline-1.jpg)
 
 ##### 总结
 
