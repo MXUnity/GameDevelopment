@@ -10,3 +10,4 @@ obj/*
 Temp/*
 *.sln
 *.csproj
+Assets/UseRes
