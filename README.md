@@ -4,7 +4,7 @@
 
 ​	游戏开发中所学所知所解
 
-## [Rendering](https://github.com/MXUnity/GameDevelopment/blob/main/README/RENDERING.md)
+## [Rendering](https://github.com/MXUnity/GameDevelopment/tree/main/Assets/Pipeline)
 
 ### 	Postprocessing
 
