@@ -24,7 +24,7 @@
 
 ###### Deffered Rendering
 
-
+​	Link : https://github.com/MXUnity/GameDevelopment/tree/main/Assets/Pipeline/Deferred
 
 ​	GPU架构参考：https://zhuanlan.zhihu.com/p/112120206，
 
