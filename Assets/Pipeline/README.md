@@ -16,11 +16,11 @@
 
 ##### 管线主流
 
-​	现代主线渲染管线分为Forward,Deffered Rendering两种
+​	现代主线主流渲染管线分为Forward,Deffered两种，也可以自定义一些渲染管线
 
 ###### Forward/Forward+
 
-​	
+​	Link : https://github.com/MXUnity/GameDevelopment/tree/main/Assets/Pipeline/Forward
 
 ###### Deffered Rendering
 
@@ -63,6 +63,8 @@ TBDR是PowerVR(苹果所使用的GPU)提出申请专利的，实际是TBR的优�
 1：前向渲染会有很多overdraw,需要靠程序员自己剔除，但是延迟渲染在IMR架构就很合适
 
 2：处理直接不会出现AlphaCut性能比AlphaBlend性能低奇怪的情况
+
+3：实际不考虑功耗IMR更快更直接
 
 
 
