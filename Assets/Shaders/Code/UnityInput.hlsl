@@ -89,7 +89,7 @@ float4x4 unity_CameraToWorld;
 // ----------------------------------------------------------------------------
 
 // Block Layout should be respected due to SRP Batcher
-// CBUFFER_START(UnityPerDraw)
+CBUFFER_START(UnityPerDraw)
 // Space block Feature
 float4x4 unity_ObjectToWorld;
 float4x4 unity_WorldToObject;

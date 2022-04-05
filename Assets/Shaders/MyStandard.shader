@@ -37,16 +37,14 @@
             v2f vert (appdata v)
             {
                 v2f o;
-                o.vertex = TransformWorldToView(v.vertex);
+                o.vertex = TransformObjectToHClip(v.vertex);
                 o.uv = v.uv;
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            half4 frag (v2f i) : SV_Target
             {
-                // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
-                // apply fog
+                half4 col = tex2D(_MainTex, i.uv);
                 return col;
             }
             ENDHLSL

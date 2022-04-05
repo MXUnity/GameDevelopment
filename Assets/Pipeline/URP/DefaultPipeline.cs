@@ -7,8 +7,6 @@ public class DefaultPipeline : RenderPipeline
 {
     protected override void Render(ScriptableRenderContext context, Camera[] cameras)
     {
-        // context.ExecuteCommandBuffer()
-
         context.Submit();
     }
 

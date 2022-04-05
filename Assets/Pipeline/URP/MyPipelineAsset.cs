@@ -23,6 +23,8 @@ public class MyPipelineAsset : RenderPipelineAsset
     {
         switch(pipelineType)
         {
+            case PipelineType.Deferred:
+                return new CustomDRP();
             
 
         }
