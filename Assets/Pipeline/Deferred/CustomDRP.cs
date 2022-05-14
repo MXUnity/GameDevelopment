@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -8,12 +8,21 @@ public class CustomDRP : RenderPipeline
 {
     protected override void Render(ScriptableRenderContext context, Camera[] cameras)
     {
+        
         for(int i =0; i < cameras.Length;i++)
         {
-
+            ExecuteRenderLoop(cameras[i],CalculateCameraCulling(cameras[i]),context);
         }
         
         context.Submit();
+    }
+
+    //计算镜头裁剪信息
+    public static CullingResults CalculateCameraCulling(Camera camera)
+    {
+        CullingResults cullingReuslts = new CullingResults();
+
+        return cullingReuslts;
     }
 
 

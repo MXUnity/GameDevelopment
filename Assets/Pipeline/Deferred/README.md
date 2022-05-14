@@ -10,15 +10,17 @@
 
 ​	1.预先渲染出场景到屏幕上的数据
 
-​	该步骤需要MRT(Multiple Render Targets)功能，可以把复数数据写入G-Buffer中，区别与普通将颜色写入纹理/屏幕中，G-buffer指将颜色、法线、空间坐标等数据写入的纹理空间
+​	该步骤需要MRT(Multiple Render Targets)功能，可以把复数数据写入G-Buffer中，区别与普通将颜色写入纹理/屏幕中，G-buffer指将颜色、法线、空间坐标等数据写入的数据缓存空间
 
-​	说到底就是G-Buffer（几何缓存区）指DeferredRendering第一阶段存储颜色、法线、高光颜色、深度等内容的数据区，该功能由于要向复数个RT数据结构写入数据，所以需要Multiple Render Target功能，N卡2004年推出的shader3.0后支持（MRT），Opengl在Opengl3.0 以后支持，就是android4以后支持，所以当前（2022年）可以说国内的玩家设备基本都支持，不支持也基本在10年前上下的设备
+​	说到底就是G-Buffer（几何缓存区）指 DeferredRendering第一阶段存储颜色、法线、高光颜色、深度等内容的数据区，该功能由于要向复数个RT数据结构写入数据，所以需要Multiple Render Target功能，N卡2004年推出的shader3.0后支持（MRT），Opengl在Opengl3.0 以后支持，就是android4以后支持，所以当前（2022年）可以说国内的玩家设备基本都支持，不支持也基本在10年前上下的设备
 
 <img src="README/G-Buffer.jpg" alt="G-Buffer" style="zoom: 50%;" />
 
 ​	2.对屏幕上的数据做着色运算处理
 
 ​		获取到G-Buffer数据既可以开始全屏处理光照，屏幕空间技术等效果获得最终渲染效果
+
+<img src="README/DeferredRendering.drawio.png" alt="DeferredRendering.drawio" style="zoom:80%;" />
 
 
 
@@ -52,9 +54,37 @@
 
 ​		参考https://zhuanlan.zhihu.com/p/401602488
 
-​		URP：
+​		URP实现：
+
+1：CPU数据预备阶段
+
+渲染物件，灯光筛选
+
+静态合批
+
+动态合批
+
+GpuInstance
+
+SRP Batcher
 
 
+
+2：G-Buffer写入阶段
+
+写入法线，底色，深度，粗糙，光滑值，shaderID,materialID
+
+
+
+3 : 计算光照效果以及一部分后处理效果
+
+
+
+4：后处理阶段，一些需要用到光照结果的滤波效果
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #### 	使用建议
 
