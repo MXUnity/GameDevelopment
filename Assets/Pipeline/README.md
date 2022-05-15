@@ -26,19 +26,49 @@
 
 ​	Link : https://github.com/MXUnity/GameDevelopment/tree/main/Assets/Pipeline/Deferred
 
-​	GPU架构参考：https://zhuanlan.zhihu.com/p/112120206，
+#### GPU硬件架构：
 
-​	实际上按照GPU架构渲染过程其实并不是一直保持上面的流程模式，因为实际上主要渲染架构TMR主要走上面流程，TMR每次Drawcall都会进行以下流程
+​	事实上渲染管线是一个概念上或者说程序使用上的的流程，在程序运行在GPU上的时候，GPU的架构的不一样对同一个程序渲染的消耗完全不同结果
 
-##### TMR
+实际开发需要针对特点环境去对程序进行优化，现在市面上主流有以下两种IMR和TBR/TBDR，Android/iOS主流使用TBR/TBDR的GPU架构，事实上GPU架构
+
+在不同厂商用不一样技术导致实际优化方向不一样。https://zhuanlan.zhihu.com/p/482448457
+
+例如：高通提出了FlexRender的渲染架构，就可以在运行时候自动切换IMR和TBR渲染模式，在后处理多批次速度快于单纯使用TBR架构(实际上在测试华为和小米
+
+在bloom性能上优化上差异发现的问题，减少运算复杂度对小米优化有效果对华为没有效果，减少批次对华为有效果对小米优化效果不明显)
+
+参考:
+
+IMR/TBR详解：
+
+https://zhuanlan.zhihu.com/p/112120206
+
+https://blog.csdn.net/zju_fish1996/article/details/109269448
+
+GPU厂商硬件架构技术：
+
+https://www.sohu.com/a/83561143_119711
+
+https://news.mydrivers.com/1/266/266555_all.htm
+
+##### IMR
+
+​		立即渲染的GPU渲染架构，基本在一个Drawcall指令下会计算出渲染结果，每次执行都会经过以下流程
 
 ![IMR-Pipeline-1](README/IMR-Pipeline-1.jpg)
 
-​	移动端或者带电源的主机一般都是使用TBR渲染架构，为了减少带宽消耗，进而减少功耗，通过先缓存顶点数据，通过光栅化前做一次Early-z(进行一次顶点遮挡剔除)，减少实际在着色阶段运算量以及会系统内存读写数量，通过小片段的On-Chip来缓存数据，可以提高读写速度和减少能耗
 
-TBDR是PowerVR(苹果所使用的GPU)提出申请专利的，实际是TBR的优化而来， 这个D其实是增加了下面光栅化后的深度剔除，顶点剔除其实还是有重叠的overdraw，光栅化后的剔除能保证精确去除overdraw，把着色阶段运算量降到最低。
 
 ##### TBDR/TBR
+
+​	移动端或者带电源的主机一般都是使用TBR渲染架构，为了减少带宽消耗，减少功耗，通过先缓存顶点数据，通过光栅化前做一次Early-z(进行一次顶点遮挡剔
+
+除)，减少实际在着色阶段运算量以及会系统内存读写数量，通过小片段的On-Chip来缓存数据，可以提高读写速度和减少能耗
+
+TBDR是PowerVR(苹果所使用的GPU)提出申请专利的，实际是TBR的优化而来， 这个D其实是增加了下面光栅化后的深度剔除，顶点剔除后还存在重叠部分
+
+overdraw，光栅化后的剔除能保证精确去除overdraw，把着色阶段运算量降到最低。
 
 ![TBDR-Pipeline-1](README/TBDR-Pipeline-1.jpg)
 
@@ -56,15 +86,15 @@ TBDR是PowerVR(苹果所使用的GPU)提出申请专利的，实际是TBR的优�
 
 3：体积小也就带着能带的运算逻辑单元少，处理性能不如主机PC运算，有时候读图的带宽压力比运算低，在PC或主机可以用运算替代读图减少带宽，真机有些时候就要读图替代运算减少运算
 
-4：AlphaCut会打断Early-z流程，所以AlphaCut有时候性能消耗比AlphaBlend高，不过也要看先渲染AlphaCut剔除了多少OverDraw，所以实际情况并非AlphaCut比AlphaBlend消耗大
+4：AlphaCut会打断Early-z流程，因此AlphaCut有时候性能消耗比AlphaBlend高，不过实际需要看渲染AlphaCut减少了OverDraw的性能消耗，实际情况移动端并非AlphaCut固定比AlphaBlend消耗大，而在于Overdraw的减少消耗对比打断Early-z导致的额外开销。例如无论移动端还是PC端在大面积的草效果选用AlphaCut就会比使用Alphablend的性能更好，当然锯齿情况就要另外优化
 
-###### TMR总结
+###### IMR总结
 
-1：前向渲染会有很多overdraw,需要靠程序员自己剔除，但是延迟渲染在IMR架构就很合适
+1：前向渲染会产生更多overdraw,需要靠程序员自己剔除(例如软光栅)，延迟渲染在IMR架构更有优势
 
-2：处理直接不会出现AlphaCut性能比AlphaBlend性能低奇怪的情况
+2：不会出现AlphaCut性能比AlphaBlend性能低奇怪的情况
 
-3：实际不考虑功耗IMR更快更直接
+3：IMR比TBR/TBDR更快更直接，不需要额外写入顶点缓存
 
 
 

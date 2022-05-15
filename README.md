@@ -7,8 +7,10 @@
 ​	当前研习方式
 
 ```mermaid
-graph TD;
-A-->B;
+sequenceDiagram
+	participant Alice
+	participant Bob
+	
 ```
 
 
