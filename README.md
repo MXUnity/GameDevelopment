@@ -8,8 +8,17 @@
 
 ```mermaid
 sequenceDiagram
-	participant Alice
-	participant Bob
+	participant 需求功能
+	participant 软件理论
+	participant 硬件理论
+	participant 数学理论
+	需求功能->>软件理论:寻求方案
+	软件理论->>硬件理论:性能消耗
+	硬件理论->>数学理论:优缺抉择
+	软件理论->>数学理论:方案本质
+	数学理论->>软件理论:方案调优
+	软件理论->>需求功能:方案实践
+	
 	
 ```
 
@@ -23,11 +32,11 @@ sequenceDiagram
 
 ### 			Postprocessing
 
-#### 	SSS
+### 	SSS
 
 ### 		PBR
 
-​	
+
 
 ## Animation
 
