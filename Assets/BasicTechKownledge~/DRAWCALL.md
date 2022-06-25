@@ -10,21 +10,27 @@ $\color{#00AA22}{DrawCall}$从字面上理解是一次CPU对GPU的指令调用�
 
 
 
-调用Gpu图形绘制接口本身不是太过于消耗性能的事件，$\color{#00AA22}{DrawCall}$之所以会成为优化性能指标是因为每个$\color{#00AA22}{DrawCall}$代表需要用Cpu需要预先处理的一些设置，依据官方文档Cpu预先处理的设置包括:
+调用Gpu图形绘制接口本身不是太过于消耗性能的事件，$\color{#00AA22}{DrawCall}$之所以会成为优化性能指标是因为每个$\color{#00AA22}{DrawCall}$代表需要用Cpu需要预先处理的一些设置，要了解这部分需要了解下CPU是如何给GPU准备数据的，来看一下CPU给GPU准备数据各个图像渲染API的方式：
 
-1.渲染状态变更(Material.SetPass)
+OpenGL :
 
-2.
+
+
+Vulkan:
+
+
+
+Metal:
+
+
+
+DritectX:
+
+存入的命令缓存区(Command Buffer)
+
+
 
 https://docs.unity3d.com/Manual/optimizing-draw-calls.html
-
-下面具体分析下
-
-
-
-
-
-
 
 总结:
 

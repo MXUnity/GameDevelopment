@@ -2,9 +2,7 @@
 
 # 	Batcher
 
-合批，合并批次主要目的在于降低Draw Call调用次数
-
-
+合批，合并批次主要目的在于降低 [DrawCall](..\BasicTechKownledge~\DRAWCALL.md) 调用次数
 
 ##### 静态合批
 
